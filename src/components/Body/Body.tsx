@@ -1,24 +1,36 @@
-import React from 'react';
-import VideoItem from './VideoItem';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import FormationItem from './FormationItem';
 
-interface Video {
-  thumbnail: string;
-  title: string;
+interface Formation {
+  id: number;
+  name: string;
+  duree: string;
   description: string;
+  price: number;
+  image: string;
+  video: string;
 }
 
-const videos: Video[] = [
+const formations: Formation[] = [
   {
-    thumbnail: 'path/to/thumbnail1.jpg',
-    title: 'Video Title 1',
-    description: 'Description for video 1',
+    id: 1,
+    name: 'Formation 1',
+    duree: '3 months',
+    description: 'Description for Formation 1',
+    price: 200.00,
+    image: 'path/to/image1.jpg',
+    video: 'path/to/video1.mp4',
   },
   {
-    thumbnail: 'path/to/thumbnail2.jpg',
-    title: 'Video Title 2',
-    description: 'Description for video 2',
+    id: 2,
+    name: 'Formation 2',
+    duree: '6 months',
+    description: 'Description for Formation 2',
+    price: 400.00,
+    image: 'path/to/image2.jpg',
+    video: 'path/to/video2.mp4',
   },
-  // Add more videos as needed
 ];
 
 const Body: React.FC = () => {
@@ -26,12 +38,41 @@ const Body: React.FC = () => {
     <div className="p-8">
       <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
       <div className="flex flex-wrap justify-center">
-      {videos.map((video, index) => (
-        <VideoItem key={index} video={video} index={index} />
-      ))}
+        {formations.map((formation, index) => (
+          <FormationItem key={formation.id} formation={formation} index={index} />
+        ))}
       </div>
     </div>
   );
 };
+/*
 
+const Body: React.FC = () => {
+  const [formations, setFormations] = useState<Formation[]>([]);
+
+  useEffect(() => {
+    const fetchFormations = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/formations');
+        setFormations(response.data);
+      } catch (error) {
+        console.error('Error fetching formations:', error);
+      }
+    };
+
+    fetchFormations();
+  }, []);
+
+  return (
+    <div className="p-8">
+      <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
+      <div className="flex flex-wrap justify-center">
+        {formations.map((formation, index) => (
+          <FormationItem key={formation.id} formation={formation} index={index} />
+        ))}
+      </div>
+    </div>
+  );
+};
+*/
 export default Body;
