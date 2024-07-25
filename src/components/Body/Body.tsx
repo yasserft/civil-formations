@@ -12,7 +12,7 @@ interface Formation {
   video: string;
 }
 
-const formations: Formation[] = [
+/*const formations: Formation[] = [
   {
     id: 1,
     name: 'Formation 1',
@@ -32,8 +32,24 @@ const formations: Formation[] = [
     video: 'path/to/video2.mp4',
   },
 ];
-
+*/
 const Body: React.FC = () => {
+
+  const [formations, setFormations] = useState<Formation[]>([]);
+
+  useEffect(() => {
+    const fetchFormations = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/formations');
+        setFormations(response.data);
+      } catch (error) {
+        console.error('Error fetching formations:', error);
+      }
+    };
+
+    fetchFormations();
+  }, []);
+
   return (
     <div className="p-8">
       <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
