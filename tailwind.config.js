@@ -16,8 +16,8 @@ module.exports = {
         },
       },
       animation: {
-        'fade-slide-in-left': 'fade-slide-in-left 2s ease-out',
-        'fade-slide-in-right': 'fade-slide-in-right 2s ease-out',
+        'fade-slide-in-left': 'fade-slide-in-left 1s ease-out',
+        'fade-slide-in-right': 'fade-slide-in-right 1s ease-out',
       },
     },
   },

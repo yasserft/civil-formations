@@ -51,9 +51,9 @@ const Body: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-8">
+    <div className="p-8" id='formations'>
       <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
-      <div className="flex flex-wrap justify-center">
+      <div className="grid grid-cols-2 gap-4 justify-items-center">
         {formations.map((formation, index) => (
           <FormationItem key={formation.id} formation={formation} index={index} />
         ))}

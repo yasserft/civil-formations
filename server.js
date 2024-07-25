@@ -1,11 +1,11 @@
 const express = require('express');
 const sequelize = require('./config/database');
 const Formation = require('./models/Formation');
-const cors = require('cors'); // Import cors
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
-app.use(cors()); // Enable CORS
+app.use(cors());
 app.use(express.json());
 
 sequelize.sync()
