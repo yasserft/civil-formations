@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FormationItem from './FormationItem';
-import { useNavigate } from 'react-router-dom';
 
 interface Formation {
   id: number;
@@ -37,7 +36,6 @@ interface Formation {
 const Body: React.FC = () => {
 
   const [formations, setFormations] = useState<Formation[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFormations = async () => {
@@ -52,25 +50,15 @@ const Body: React.FC = () => {
     fetchFormations();
   }, []);
 
-  const handleMoreFormations = () => {
-    navigate('/formations');
-  };
-
   return (
-    <div className="p-8 flex flex-col items-center" id='formations'>
-    <h1 className='text-orange-500 text-3xl font-bold mb-6'>Formations</h1>
-    <div className="grid grid-cols-2 gap-4 justify-items-center">
-      {formations.slice(0, 4).map((formation, index) => (
-        <FormationItem key={formation.id} formation={formation} index={index} />
-      ))}
+    <div className="p-8" id='formations'>
+      <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
+      <div className="grid grid-cols-2 gap-4 justify-items-center">
+        {formations.map((formation, index) => (
+          <FormationItem key={formation.id} formation={formation} index={index} />
+        ))}
+      </div>
     </div>
-    <button 
-      onClick={handleMoreFormations}
-      className='mt-8 px-6 py-2 rounded bg-orange-500 text-white font-bold text-xl'
-    >
-      Autres
-    </button>
-  </div>
   );
 };
 /*
