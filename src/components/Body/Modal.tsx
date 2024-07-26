@@ -1,6 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import CheckoutForm from './CheckoutForm';
 
-const Modal: React.FC<{ show: boolean; onClose: () => void; videoUrl: string }> = ({ show, onClose, videoUrl }) => {
+interface ModalProps {
+  show: boolean;
+  onClose: () => void;
+  videoUrl: string;
+  name: string;
+  description: string;
+  duree: string;
+  price: number;
+  pay: boolean;
+}
+
+const Modal: React.FC<ModalProps> = ({ show, onClose, videoUrl, name, description, duree, price, pay }) => {
   if (!show) return null;
 
   return (
@@ -10,7 +22,12 @@ const Modal: React.FC<{ show: boolean; onClose: () => void; videoUrl: string }> 
           <button onClick={onClose} className="text-black text-2xl font-bold">&times;</button>
         </div>
         <div className="mt-4">
-          <video controls src={videoUrl} className="w-full rounded" />
+          <h2 className="text-2xl font-bold mb-2">{name}</h2>
+          <p className="mb-4">{description}</p>
+          <p><strong>Duree:</strong> {duree}</p>
+          <p><strong>Prix:</strong> {price.toFixed(2)} DH</p>
+          <video controls src={videoUrl} className="w-full rounded mt-4 mb-4" />
+          {pay ? <CheckoutForm amount={price} /> : <p className="text-green-500">Free</p>}
         </div>
       </div>
     </div>

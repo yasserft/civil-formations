@@ -1,4 +1,6 @@
 const express = require('express');
+const Stripe = require('stripe');
+const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
 const Formation = require('./models/Formation');
 const cors = require('cors');
@@ -7,6 +9,23 @@ const port = 5000;
 
 app.use(cors());
 app.use(express.json());
+
+const stripe = Stripe('your-secret-key-here');
+
+app.use(bodyParser.json());
+
+app.post('/create-payment', async (req, res) => {
+  const { amount } = req.body;
+  
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: amount * 100,
+    currency: 'usd',
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
 
 sequelize.sync()
   .then(() => {
