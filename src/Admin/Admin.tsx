@@ -11,7 +11,7 @@ const Admin: React.FC = () => {
 
   return (
     <div className="p-8">
-      <Barside/>
+      <Barside title='ksc'/>
         
     </div>
   );

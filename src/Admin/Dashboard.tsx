@@ -4,10 +4,11 @@ import axios from 'axios';
 import Barside from './barside';
 
 const Dashboard: React.FC = () => {
+
   return (
     <div className='body'>
     
-        <Barside/>
+        <Barside title="dashboard"/>
         <div className="content">
         <div className="title"><h1>Dashborad</h1></div>
             <div className="titlecontent">

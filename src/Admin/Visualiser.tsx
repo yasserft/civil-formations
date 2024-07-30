@@ -7,7 +7,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className='body'>
     
-        <Barside/>
+        <Barside title='visualiser'/>
         <div className="content">
         <div className="title"><h1>Visualiser</h1></div>
             <div className="titlecontent">

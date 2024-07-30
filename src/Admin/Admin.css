@@ -2,6 +2,8 @@
     padding: 0;
     margin: 0;
     color: rgb(255, 255, 255);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
 }
 .body{
     background-color: rgba(255, 72, 0, 0.96);
@@ -23,15 +25,17 @@ ul li a{
    
     
 }
-ul li a:hover,.item1{
+ul li a:hover{
 background-color: rgb(185, 185, 179);
 border-radius: 13px;
+}
+.active{
+    background-color: rgb(185, 185, 179); 
+    border-radius: 13px; 
 }
 .img{
     display: flex;
     margin-left: 10px;
-
-    
 }
 .img h1{
     margin-left: 30px;
@@ -57,12 +61,15 @@ ul{
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: red;
+   
 }
 .logout a  :hover{
   
    color: red;
     transition: 0.5s;
+}
+.logout a i{
+    color: red;
 }
 .barside:hover{
     width: 260px;
@@ -157,35 +164,3 @@ transition: 0.5s;
     color: rgb(255, 0, 0);
 transition: 0.5s;
 }
-table{
-    width: 100%;
-    text-align: center;
-    border-spacing: 6px;
-   
-}
-th{
-    background-color: rgb(255, 163, 163);
-    color: black;
-    border-radius: 22px;
-    height: 40px;
-}
-td{
-    background-color: rgb(127, 73, 73);
-    border-radius: 10px;
-    height: 40px;
-    color: #96bdff;
-
-}
-.price , .count{
-  padding: 3px;
-  border-radius: 8px;
-}
-.price{
-   background-color: rgba(255, 217, 0, 0.446);
-}
-.count{
-    background-color: rgba(9, 159, 7, 0.623);
-   
-}
-
-

@@ -6,7 +6,7 @@ import Barside from './barside';
 const Add: React.FC = () => {
   return (
     <div className='bodyform'>
-        <Barside/>
+        <Barside title='add'/>
         <form action="" method="post">
             <input placeholder="Nom du formation" type="text" name="name" id="name"/>
             <input placeholder="Duree" type="text" name="duree" id="duree"/>
