@@ -10,6 +10,7 @@ interface Formation {
   price: number;
   image: string;
   video: string;
+  pay:boolean;
 }
 
 /*const formations: Formation[] = [
@@ -34,8 +35,9 @@ interface Formation {
 ];
 */
 const Body: React.FC = () => {
-
   const [formations, setFormations] = useState<Formation[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     const fetchFormations = async () => {
@@ -44,51 +46,47 @@ const Body: React.FC = () => {
         setFormations(response.data);
       } catch (error) {
         console.error('Error fetching formations:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchFormations();
   }, []);
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredFormations = formations.filter(formation =>
+    formation.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="p-8" id='formations'>
-      <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
-      <div className="grid grid-cols-2 gap-4 justify-items-center">
-        {formations.map((formation, index) => (
-          <FormationItem key={formation.id} formation={formation} index={index} />
-        ))}
+    <div className="p-8 bg-orange-500" id='formations'>
+      <h1 className='text-white text-3xl font-bold mb-6'>Formations</h1>
+      <div className="flex justify-center mb-8">
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="px-4 py-2 border rounded-lg drop-shadow-lg"
+        />
       </div>
+      {loading ? (
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="loader">Loading...</div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 justify-items-center">
+          {filteredFormations.map((formation, index) => (
+            <FormationItem key={formation.id} formation={formation} index={index} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
-/*
 
-const Body: React.FC = () => {
-  const [formations, setFormations] = useState<Formation[]>([]);
-
-  useEffect(() => {
-    const fetchFormations = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/formations');
-        setFormations(response.data);
-      } catch (error) {
-        console.error('Error fetching formations:', error);
-      }
-    };
-
-    fetchFormations();
-  }, []);
-
-  return (
-    <div className="p-8">
-      <h1 className='text-orange-500 text-3xl font-bold'>Formations</h1>
-      <div className="flex flex-wrap justify-center">
-        {formations.map((formation, index) => (
-          <FormationItem key={formation.id} formation={formation} index={index} />
-        ))}
-      </div>
-    </div>
-  );
-};
-*/
 export default Body;

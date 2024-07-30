@@ -3,12 +3,14 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/Home/Home';
 import AdminPage from './Admin/Admin';
+import StripeConfig from './StripeConfig';
 import FormationsPage from './Formations/Formations';
 import DashboardPage from './Admin/Dashboard';
 import VisualiserPage from './Admin/Visualiser';
 import AddPage from './Admin/add';
 const App: React.FC = () => {
   return (
+    <StripeConfig>
     <Router>
       <Routes>
         <Route path="/" element={<HomePage/>} />
@@ -18,6 +20,7 @@ const App: React.FC = () => {
         <Route path="/Admin/add" element={<AddPage />} />
       </Routes>
     </Router>
+    </StripeConfig>
   );
 };
 
