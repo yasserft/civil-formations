@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     padding: 0;
     margin: 0;
@@ -164,3 +165,8 @@ transition: 0.5s;
     color: rgb(255, 0, 0);
 transition: 0.5s;
 }
+=======
+body{
+    background-color: aqua;
+}
+>>>>>>> e40565100f768c0f09bbaebb121e310a6bbea0f0
